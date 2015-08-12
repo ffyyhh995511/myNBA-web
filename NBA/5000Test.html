@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+	<title>布局测试</title>
+	<script src="http://www.sise.com.cn/js/jquery.js"></script>
+	<style>
+	#wrap{
+		width:100%;
+		height:auto;
+	}
+	#content{
+		width:1000px;
+		height:800px;
+		margin:0 auto;
+		background: #eee;
+	}
+	#space{
+		height: 300px;
+	}
+	#header{
+		height: 500px;
+		background: #ddd;
+	}
+	.header-inner{
+		width:250px;
+		height: 200px;
+		float: left;
+	}
+	.header-content{
+		position: absolute;
+		width:250px;
+		height: 200px;
+	}
+	.hello{
+		position: absolute;
+		width:100px;
+		height:100px;
+		top:100px;
+		left:75px;
+		background:#6FF;
+	}
+	.world{
+		position: absolute;
+		width:100px;
+		height:100px;
+		top:0;
+		left:75px;
+		background:#39F;
+		display:none;
+	}
+	</style>
+	<script type="text/javascript">
+	$(function(){
+	$(".hello").hover(function(){
+		$(this).parent().find(".world").show();
+	}, function(){
+		$(this).parent().find(".world").hide();
+		});
+	});
+	</script>
+</head>
+<body>
+	<div id="wrap">
+		<div id="content">
+			<div id="space"></div>
+			<div id="header">
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+				<div class="header-inner">
+					<div class="header-content">
+						<div class="world">world</div>
+						<div class="hello">hello</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,511 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>第二版设计</title>
+
+<link rel="stylesheet" href="css/bootstrap.css">
+
+<style type="text/css">
+	body{
+		background-image:url(img/body.png);
+		padding:40px;
+	}
+	::-webkit-scrollbar {
+	width: 10px;
+	opacity: .5;	
+	-webkit-transition: .25s;
+	-moz-transform:.25s;
+	}
+	::-webkit-scrollbar-button {
+		width: 10px;
+		height: 5px;
+		-webkit-transition: .25s;
+	}
+	::-webkit-scrollbar-track {
+		/* border: thin solid lightgray; 
+		box-shadow: 0px 0px 3px #dfdfdf inset; */
+		border-radius: 10px;
+		-webkit-transition: .25s;
+		
+		-moz-border-radius:10px;
+		-moz-transition:.25s;
+	}
+	::-webkit-scrollbar-thumb {
+		background:#999;
+		opacity: .3;
+		/* border: thin solid gray; */
+		border-radius: 10px;
+		-webkit-transition: .25s;
+		
+		border-radius: 10px;
+		-webkit-transition: .25s;
+		
+	}
+	::-webkit-scrollbar-thumb:hover {
+		background:#09C;
+		-webkit-transition: .25s;
+		-moz-transition:.25s;
+	}
+	h1{
+		opacity:1;
+		-webkit-box-reflect: below -16px -webkit-gradient(linear, 0 0, 0 100%, from(transparent), color-stop(.5, transparent), to(white));
+	}
+	h4{
+		
+	}
+	.for-h2{
+		line-height:30px;
+		-webkit-box-reflect: below -16px -webkit-gradient(linear, -3 0, 0 100%, from(transparent), color-stop(.5, transparent), to(white));
+	}
+	p{
+		line-height:30px;
+	}
+	#wrap{
+		width:100%;
+		height:auto;
+	}
+	#main{
+		width:1140px;
+		margin:0 auto;
+	}
+
+	#page-header{
+		background-color: #1B1B1B;
+		font-weight:100;
+		opacity: 0.6;
+		box-shadow:0 0 20px rgba(28, 185, 224, 0.65);
+	}
+	.navbar .nav > li > a {
+		color: rgb(230, 218, 218);
+		text-shadow: 0 0px 0 #ffffff;
+	}
+	.common{
+		background:#FFF url(img/white_wall_hash.png);
+		box-shadow: 0px 1px 8px 1.5px rgba(0, 0, 0, .35), 0px 20px 70px 8px rgba(0, 0, 0, 0.25);
+		margin-top:50px;
+		height:auto;
+		border-radius:8px;
+	}
+	.span12{
+		width:1140px;
+	}
+	.span8{
+		width:775px;
+	}
+	.span12-height{
+		height:450px;
+	}
+	
+	.brand{
+		width:366.3px;
+		height:400px;
+	}
+	
+	.brand img{
+		border-top-left-radius:8px;
+		border-top-right-radius:8px;
+	}
+	.brand .brandwork{
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	 
+	
+	.span4 img{
+		width: 366px;
+		border-bottom-right-radius: 8px;
+		border-top-right-radius: 8px;
+		margin-left: 60px;
+	}
+	.carousel-inner img{
+		border-bottom-left-radius:8px;
+		border-top-left-radius: 8px;
+		/*firfox*/
+		-webkit-border-bottom-left-radius:8px;
+		-webkit-border-top-left-radius:8px;
+		-moz-border-radius-bottomleft:8px;
+		-moz-border-radius-topright:8px;
+	}
+	
+	.logo-div{
+		width:142.5px;
+		height:110px;
+		float:left;
+	}
+	.logo-content{
+		position:absolute;
+		width:142.5px;
+		height:110px;
+	}
+	.logo-tip{
+		position:absolute;
+		top:0px;
+		left:23.25px;
+	}
+	.logo{
+		position:absolute;
+		width:70px;
+		height:70px;
+		-webkit-border-radius:8px;
+		/*firfox*/
+		-moz-border-radius:8px;
+		border-radius:8px;
+		top:50px;
+		left:26.25px;
+	}
+	.logo img{
+		-webkit-border-radius:8px;
+		-webkit-box-shadow:#099;
+		-webkit-box-reflect:
+		below -16px -webkit-gradient(linear, 0 0, 0 122%, from(transparent), color-stop(.5, transparent), to(white));
+		/*firfox*/
+		-moz-border-radius:8px;
+		-moz-box-shadow:#099;
+		/*common*/
+		border-radius:8px;
+		box-shadow:#099;
+	
+	}
+	
+	.testleft{
+		margin-left:25px;	
+	}
+	.div-slider{
+		 position:relative; 
+		 margin-top: -100px;
+		 margin-left: 1170px;
+	}
+	.div-slider > .up-down{
+		position:fixed; 
+		bottom:100px; width:50px;
+		opacity: 0.6
+	}
+	
+</style>
+
+<script src="js/jquery-1.8.1.js"></script>
+<script src="js/bootstrap.js"></script>
+<script>
+$(document).ready(function() {
+	
+	 <!--logo动作-->	
+	 $(".logo").hover(
+	  function () {
+		 $(this).css("box-shadow","-5px 5px 19px #006699").animate({marginTop: '-10px',}, "slow");
+		 $(this).parent().find(".logo-tip").addClass("in");
+	  }, 
+	  function () {
+		$(this).animate({marginTop: '0px'}, "slow").css("box-shadow","0px 1px 8px 1.5px rgba(0, 0, 0, .35),0px 20px 70px 8px rgba(0, 0, 0, 0.25)");
+		$(this).parent().find(".logo-tip").removeClass("in");
+	  }
+	);
+	
+	<!--侧边栏-->
+	$(".up").click(function(){
+		$("html,body").animate({scrollTop: 0}, 1000);
+	});
+	
+	$(".down").click(function(){
+		$("html,body").animate({scrollTop: $(document).height()}, 1000);	
+	});
+	
+});
+
+</script>
+
+</head>
+
+<body>
+	
+    
+        
+	<div id="wrap">
+        <!--顶部头部-->
+        <header>
+        <div class="navbar navbar-fixed-top" id="page-header">
+                <div class="container">
+                  <div class="nav-collapse collapse navbar-inverse-collapse">
+                    <ul class="nav">
+                      <li class="active"><a href="#" class="header-nav">首页</a></li>
+                      <li><a href="#" class="header-nav">科技</a></li>
+                      <li ><a href="#" class="header-nav">文化</a></li>
+                      <li class="dropdown">
+                        <a href="#" class="dropdown-toggle header-nav" data-toggle="dropdown">体育 <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                          <li><a href="#">不不不不不不</a></li>
+                          <li><a href="#">Another action</a></li>
+                          <li><a href="#">Something else here</a></li>
+                          <li class="divider"></li>
+                          <li class="nav-header">Nav header</li>
+                          <li><a href="#">Separated link</a></li>
+                          <li><a href="#">One more separated link</a></li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div><!-- /.nav-collapse -->
+                </div>
+            </div>
+        
+        </header>
+        
+        <!--正文部分-->
+        <article id="main">
+        	<!--第一部分-->
+        	<section class="common">
+            	<div class="row">
+                	<div class="span12 span12-height">
+                    	<div class="row">
+                        	<div class="span8">
+                                <div id="myCarousel" class="carousel slide">
+                                    <ol class="carousel-indicators">
+                                        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                                        <li data-target="#myCarousel" data-slide-to="1"></li>
+                                        <li data-target="#myCarousel" data-slide-to="2"></li>
+                                        <li data-target="#myCarousel" data-slide-to="3"></li>
+                                        <li data-target="#myCarousel" data-slide-to="4"></li>
+                                        <li data-target="#myCarousel" data-slide-to="5"></li>
+                                        <li data-target="#myCarousel" data-slide-to="6"></li>
+                                        <li data-target="#myCarousel" data-slide-to="7"></li>
+                                    </ol>
+                                    <!-- Carousel items -->
+                                    <div class="carousel-inner">
+                                        <div class="item active">
+                                             <img src="assets/1.png">
+                                        </div>
+                                        <div class="item">
+                                             <img src="assets/2.png">
+                                        </div>
+                                        <div class="item">
+                                             <img src="assets/3.png">
+                                        </div>
+                                        <div class="item">
+                                             <img src="assets/4.png">
+                                        </div>
+                                        <div class="item">
+                                             <img src="assets/5.png">
+                                        </div>
+                                        <div class="item">
+                                             <img src="assets/6.png">
+                                        </div>
+                                        <div class="item">
+                                             <img src="assets/7.png">
+                                        </div>
+                                        <div class="item" >
+                                             <img src="assets/8.png">
+                                        </div>
+                                     </div>
+                                          <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
+                                          <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
+                                </div>
+                           	</div>
+                            <div class="span4">
+                            	<h1>Laker</h1>
+                             	<p>
+                                	是美国NBA的一个队，其他的对还有:
+						            东部联盟 
+						            大西洋赛区 纽约尼克斯队 新泽西篮网队 波士顿凯尔特人队 多伦多猛龙队 费城76人队 
+						            中部赛区：底特律活塞队 印第安纳步行者队 克里夫兰骑士队 密尔沃基雄鹿队
+						            东南部赛区 ：迈阿密热火队、奥兰多魔术队、华盛顿奇才队、亚特兰大老鹰队、夏洛特山猫队 
+						            西北赛区 ：明尼苏达森林狼队、丹佛掘金队、犹他爵士队、波特兰开拓者队、俄克拉荷马城雷霆队 
+						            太平洋赛区：萨克拉门托国王队
+						            西南部赛区：圣安东尼奥马刺队、休斯敦火箭队、达拉斯小牛队、孟菲斯灰熊队、新奥尔良黄蜂队
+						        </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!--第二部分-->
+            <section class="common">
+            	<div class="row">
+					<div class="span12">
+                    	<div class="span9">
+                        	<div>
+                            	<h2 class="for-h2">科比</h2>
+                            	<p>美国职业篮球运动员，自1996年起效力于NBA洛杉矶湖人队，司职得分后卫.科比·布莱恩特是前NBA篮球运动员乔·布莱恩特的儿子。科比是NBA最好的得分手之一，突破、投
+                           	 	篮、罚球、三分球他都驾轻就熟，几乎没有进攻盲区，
+                           		单场比赛81分的个人纪录就有力的证明了力的证明了力的证明了这一点乎没有进攻盲区，单场比赛81分的个
+                                </p>
+                            </div>
+                       		<div class="row">
+                            	<div class="span4"><h4>三连冠时期</h4><p>随着  湖人王朝 奥尼尔 科比 杰克逊
+                   				 1999年菲尔·杰克逊来到湖人队执教，科比的命运发生了改变。[41]经过几年的稳步进步，科比已经成为了联盟中最好的得分后卫之一，多次出现在NBA最佳阵容，[42]全明星及NBA最佳防守阵容。[43]在科比和奥尼尔这对表现突出的中锋-后卫组合的</p></div>
+                                <div class="span5"><h4>三连冠时期</h4><p>随着  湖人王朝 奥尼尔 科比 杰克逊
+                   				 1999年菲尔·杰克逊来到湖人队执教，科比的命运发生了改变。[41]经过几年的稳步进步，科比已经成为了联盟中最好的得分后卫之一，多次出现在NBA最佳阵容，[42]全明星及NBA最佳防守阵容。[43]在科比和奥尼尔这对表现突出的中锋-后卫组合的带领下，湖人队成为总冠军</p></div>
+                            </div>
+                        </div>
+                        <div class="span4">
+                        	<img src="assets/kobe.png" style="max-width:340px;">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <!--第三部分-->
+            <section>
+            	<div class="row">
+                	<span class="span12">
+                    	<div class="row">
+                        	<div class="span5 brand common" >
+                                <img src="assets/nike.jpg">
+                                <div class="brandwork">
+                                	<h4>nike</h4>
+                                    <p>
+                                    NIKE英文原意指希腊胜利女神。NIKE是全球著名的体育用品品牌，中文译为耐克。
+                                    该公司总部位于美国俄勒冈州Beaverton。该公司生产的体育用品包罗万象：服装	，鞋类，运动器材等等
+                                    。2011年9月初，耐克鞋被指中外有别，同款鞋国内价高却少气垫
+                                    </p>
+                                </div>
+                            </div>
+                            
+                    		<div class="span5 brand common">
+                            	<img src="assets/adidas.png">
+                                <div class="brandwork">
+                                	<h4>nike</h4>
+                                    <p>
+                                    NIKE英文原意指希腊胜利女神。NIKE是全球著名的体育用品品牌，中文译为耐克。
+                                    该公司总部位于美国俄勒冈州Beaverton。该公司生产的体育用品包罗万象：服装	，鞋类，运动器材等等
+                                    。2011年9月初，耐克鞋被指中外有别，同款鞋国内价高却少气垫
+                                    </p>
+                                </div>
+                            </div>
+                            
+                    		<div class="span5 brand common">
+                            	<img src="assets/puma.jpg">
+                            	<div class="brandwork">
+                                	<h4>nike</h4>
+                                    <p>
+                                    NIKE英文原意指希腊胜利女神。NIKE是全球著名的体育用品品牌，中文译为耐克。
+                                    该公司总部位于美国俄勒冈州Beaverton。该公司生产的体育用品包罗万象：服装	，鞋类，运动器材等等
+                                    。2011年9月初，耐克鞋被指中外有别，同款鞋国内价高却少气垫
+                                    </p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </span>
+                </div>
+            </section>
+            
+            <!--第四部分-->
+            <section  class="common" style=" height:345px;">
+            	<div class="row">
+                	<div class="span12">
+                    	<!--文字描述-->
+						<div>
+                        <h1 style="opacity:0.4; text-align:center;">National Basketball Association</h1>
+                        <h2 style="opacity:0.5">美国第一大职业篮球赛事，其中产生了威尔特·张伯伦、奥斯卡·罗伯特森、迈克尔·乔丹、科比·布莱恩特、勒布朗·詹姆斯等篮球巨星</h2>
+						</div>
+                        
+                        <br>
+                        <br>
+
+                        <!-- logo部分-->
+                        <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo1.png"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="logo-div">
+                        	<div class="logo-content">
+                                <div class="logo-tip top tooltip fade">
+                                    <div class="tooltip-arrow"></div>
+                                    <div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo2.jpg"></div>
+                            </div>
+                        </div>
+                        
+                         <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo3.jpg"></div>
+                            </div>
+                        </div>
+                        
+                         <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo4.jpg"></div>
+                            </div>
+                        </div>
+                        
+                         <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo5.jpg"></div>
+                            </div>
+                        </div>
+                        
+                         <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo6.jpg"></div>
+                            </div>
+                        </div>
+                        
+                         <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo7.jpg"></div>
+                            </div>
+                        </div>
+                        
+                         <div class="logo-div">
+                        	<div class="logo-content">
+                            	<div class="logo-tip top tooltip fade">
+                                	<div class="tooltip-arrow"></div>
+            						<div class="tooltip-inner">洛杉矶湖人</div>
+                                </div>
+                                <div class="logo"><img src="assets/logo8.jpg"></div>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                </div>
+            </section>
+            
+            
+            <!-- 侧边部分-->
+            <section>
+            	<div class="div-slider">
+                	<div class="up-down">
+                        <!--上下滚动-->
+                        <img src="assets/up.png" class="up"><br><br>
+                        <img src="assets/down.png" class="down">
+                    </div>
+                </div>
+            </section>
+
+
+        </article>
+        
+        
+    </div>
+    
+</body>
+
+</html>
